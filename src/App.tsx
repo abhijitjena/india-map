@@ -45,7 +45,7 @@ function App() {
             setPopoverText(states[e.target.classList[0] as string]);
             setPopoverVisible(true);
           }}
-          onMouseLeave={(e) => {
+          onMouseLeave={() => {
             setPopoverVisible(false);
           }}
           fillMap={fillMap}
