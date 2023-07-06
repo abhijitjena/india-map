@@ -1,0 +1,31 @@
+.tooltip {
+  position: absolute;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  width: 120px;
+  background-color: rgba(0, 0, 0, 0.719);
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 3px;
+  position: absolute;
+  z-index: 5;
+  font-size: 0.6rem; 
+}
+
+.svg-container {
+  width: 50vw;
+  height: auto;
+  resize: both;
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  .svg-container {
+    width: 80vw;
+  }
+}
