@@ -8,8 +8,9 @@ interface IProps {
   fillMap: IFillMap;
 }
 
-const MapComponent2 = (props: IProps): React.ReactElement => {
+const MapComponent = (props: IProps): React.ReactElement => {
   const { onMouseEnter, onMouseLeave, onClick, fillMap } = props;
+
   return (
     <svg
       id="map"
@@ -373,4 +374,4 @@ const MapComponent2 = (props: IProps): React.ReactElement => {
     </svg>
   )
 }
-export default MapComponent2;
+export default MapComponent;

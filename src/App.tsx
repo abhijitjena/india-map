@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import MapComponent2 from './components/MapComponent2'
+import MapComponent from './components/MapComponent'
 import Popover from './components/Popover'
 import stateMap from './constants/indianStates.json';
 import './App.css'
@@ -30,20 +30,25 @@ function App() {
   return (
     <>
       <div className='svg-container'>
-        <MapComponent2
+        <MapComponent
           onClick={(e) => {
             const map = {...fillMap};
             const prevFill = fillMap[e.target.classList[0] as string].fill;
             const nextFill = prevFill === '#f35959' ? 'white' : '#f35959';
             map[e.target.classList[0] as string].fill = nextFill;
             setFillMap({...map});
-            setPopoverVisible(false);
           }}
           onMouseEnter={(e) => {
-            setxpos(e.nativeEvent.pageX - 60);
-            setypos(e.nativeEvent.pageY - 60);
-            setPopoverText(states[e.target.classList[0] as string]);
-            setPopoverVisible(true);
+            const bounds = document.querySelector(`.${e.target.classList[0] as string}`)?.getBoundingClientRect();
+            if (bounds) {
+              const { x, y, width, height } = bounds;
+              const cx = width / 2 + x;
+              const cy = height / 2 + y + document.documentElement.scrollTop;
+              setxpos(cx);
+              setypos(cy);
+              setPopoverText(states[e.target.classList[0] as string]);
+              setPopoverVisible(true);
+            }
           }}
           onMouseLeave={() => {
             setPopoverVisible(false);
@@ -51,7 +56,7 @@ function App() {
           fillMap={fillMap}
         />
       </div>
-      {isPopoverVisible && <Popover toolTipText={popoverText} style={{ top: ypos, left: xpos }} />}
+      {isPopoverVisible && <Popover toolTipText={popoverText} style={{ position: 'absolute', top: ypos, left: xpos }} />}
     </>
   )
 }

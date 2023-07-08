@@ -10,6 +10,7 @@ const Popover = (props: IProps): React.ReactElement => {
   return (
     <div className="tooltip" style={style}>
       <span className="tooltiptext">{toolTipText}</span>
+      <div className="tooltiparrow" />
     </div>
   )
 }
